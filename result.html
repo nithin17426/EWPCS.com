@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="result.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-container {
+            width: 50%;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: absolute;
+            top: 33%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .circle-box {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+        }
+
+        .circle-box canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .score-labels {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #111895; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #222093;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Quiz Result</h1>
+
+        <div class="info-container">
+            <p><strong>Name:</strong> <span id="studentName"></span></p>
+            <p><strong>Registration No:</strong> <span id="studentRegNo"></span></p>
+            <p><strong>Subject:</strong> <span id="studentSubject"></span></p>
+        </div>
+
+        <!-- Circular Score Display -->
+        <div class="circle-box">
+            <canvas id="scoreChart" width="120" height="120"></canvas>
+            <div class="circle-text" id="resultText"></div>
+        </div>
+
+        <div class="score-labels">
+            <p><strong>Marks:</strong> <span id="studentMarks"></span></p>
+            <p><strong>Percentage:</strong> <span id="studentPercentage"></span>%</p>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='Student.html'">Back to Home</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let studentName = localStorage.getItem("studentName");
+            let studentRegNo = localStorage.getItem("studentRegNo");
+            let studentSubject = localStorage.getItem("studentSubject");
+            let studentScore = parseInt(localStorage.getItem("studentScore"));
+            let totalQuestions = parseInt(localStorage.getItem("totalQuestions"));
+
+            document.getElementById("studentName").textContent = studentName;
+            document.getElementById("studentRegNo").textContent = studentRegNo;
+            document.getElementById("studentSubject").textContent = studentSubject;
+
+            let scorePercentage = ((studentScore / totalQuestions) * 100).toFixed(1);
+            document.getElementById("studentMarks").textContent = `${studentScore}/${totalQuestions}`;
+            document.getElementById("studentPercentage").textContent = scorePercentage;
+
+            // Fetch previous results or create a new array
+            let studentResults = JSON.parse(localStorage.getItem("studentResults")) || [];
+
+            // Add new student result to array
+            studentResults.push({
+            name: studentName,
+            regNo: studentRegNo,
+            subject: studentSubject,
+            score: studentScore,
+            totalQuestions: totalQuestions,
+            percentage: scorePercentage
+            });
+
+            // Save updated results to localStorage
+            localStorage.setItem("studentResults", JSON.stringify(studentResults));
+
+    createCircularChart("scoreChart", studentScore, totalQuestions, scorePercentage);
+    });
+
+        function createCircularChart(canvasId, score, total, percentage) {
+            let ctx = document.getElementById(canvasId).getContext("2d");
+            new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    datasets: [{
+                        data: [score, total - score],
+                        backgroundColor: ["#28a745", "#E0E0E0"], /* Green Circle */
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    cutout: "75%",
+                    plugins: {
+                        tooltip: { enabled: false },
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            document.getElementById("resultText").innerHTML = `<b>${percentage}%</b>`; // Display only percentage inside the circle
+        }
+    </script>
+</body>
+</html>

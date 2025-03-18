@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - East West Polytechnic</title>
+    <link rel="stylesheet" href="Quiz.css">
+</head>
+<body>
+    <header>
+        <div id="logo-container">
+            <img id="logo" src="ewp.jpg" alt="East West Polytechnic Logo">
+        </div>
+        <h1 id="college-title">EAST-WEST POLYTECHNIC</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="Quiz.html">Quiz</a></li>
+            <li><a href="Teacher.html">Teacher</a></li>
+            <li><a href="Report.html">Report</a></li>
+            <li><a href="Student.html">Student</a></li>
+            <li><a href="#" onclick="adminLogout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="quiz-container">
+            <h2>Add a Question</h2>
+            <form id="quiz-form">
+                <label for="course">Course Name:</label>
+                <input type="text" id="course" placeholder="Enter course name" required>
+                
+                <label for="question">Question:</label>
+                <input type="text" id="question" placeholder="Enter question" required>
+                
+                <label>Options:</label>
+                <input type="text" class="option" placeholder="Option 1" required>
+                <input type="text" class="option" placeholder="Option 2" required>
+                <input type="text" class="option" placeholder="Option 3" required>
+                <input type="text" class="option" placeholder="Option 4" required>
+                
+                <label for="correct-answer">Correct Answer:</label>
+                <input type="text" id="correct-answer" placeholder="Correct Option Text" required>
+                
+                <button type="submit">Submit Quiz</button>
+            </form>
+            <div id="success-message" style="display: none; color: green;">
+                Quiz successfully added!
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 East West Polytechnic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("quiz-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const course = document.getElementById("course").value.trim();
+            const question = document.getElementById("question").value.trim();
+            const options = Array.from(document.querySelectorAll(".option")).map(opt => opt.value.trim());
+            const correctAnswer = document.getElementById("correct-answer").value.trim();
+
+            if (!course || !question || options.includes("") || !correctAnswer) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            const quizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+            let courseIndex = quizzes.findIndex(q => q.course === course);
+
+            if (courseIndex === -1) {
+                quizzes.push({ course, questions: [] });
+                courseIndex = quizzes.length - 1;
+            }
+
+            quizzes[courseIndex].questions.push({ question, options, correctAnswer });
+
+            localStorage.setItem("quizzes", JSON.stringify(quizzes));
+
+            document.getElementById("success-message").style.display = "block";
+            setTimeout(() => {
+                window.location.href = "Teacher.html";
+            }, 1500);
+
+            document.getElementById("quiz-form").reset();
+        });
+    </script>
+    <script src="Quiz.js"></script>
+</body>
+</html>

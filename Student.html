@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - East West Polytechnic</title>
+    <link rel="stylesheet" href="Student.css">
+</head>
+<body>
+    <header>
+        <div id="logo-container">
+            <img id="logo" src="ewp.jpg" alt="East West Polytechnic Logo">
+        </div>
+        <h1 id="college-title">EAST-WEST POLYTECHNIC</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#" id="quiz">Quiz</a></li>
+            <li><a href="#" id="teacher">Teacher</a></li>
+            <li><a href="#" id="report">Report</a></li>
+            <li><a href="Student.html">Student</a></li>
+        </ul>
+    </nav>
+    <main>
+    <div class="login-container">
+        <h2>Student Login</h2>
+        <form id="studentForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+
+            <label for="regNo">Registration Number</label>
+            <input type="text" id="regNo" required>
+
+            <label for="semester">Semester</label>
+            <select id="semester" required>
+                <option value="" disabled selected>Select your semester</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+            <label for="branch">Branch</label>
+            <select id="branch" required>
+                <option value="" disabled selected>Select your branch</option>
+                <option value="CSE">Computer Science</option>
+                <option value="ECE">Electronics</option>
+                <option value="EEE">Electrical</option>
+                <option value="MECH">Mechanical</option>
+                <option value="CIVIL">Civil</option>
+            </select>
+
+            <label for="subject">Subject</label>
+            <select id="subject" required>
+                <option value="" disabled selected>Select your subject</option>
+                <option value="FSD">Full Stack Development</option>
+                <option value="ES">Embedded Systems</option>
+                <option value="IC">Instrumentation</option>
+                <option value="Kannada">Kannada</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    </main>
+
+    <footer>
+    <p>&copy; 2024 East West Polytechnic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("studentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let regNo = document.getElementById("regNo").value;
+            let semester = document.getElementById("semester").value;
+            let branch = document.getElementById("branch").value;
+            let subject = document.getElementById("subject").value;
+
+            if (!name || !regNo || !semester || !branch || !subject) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            // Store student details in localStorage
+            localStorage.setItem("studentName", name);
+            localStorage.setItem("studentRegNo", regNo);
+            localStorage.setItem("studentSemester", semester);
+            localStorage.setItem("studentBranch", branch);
+            localStorage.setItem("studentSubject", subject);
+
+            alert("Login successful! Redirecting to test page...");
+            window.location.href = "test.html"; // Redirect to test page
+        });
+    </script>
+</body>
+</html>

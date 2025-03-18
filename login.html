@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - East West Polytechnic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div id="logo-container">
+            <img id="logo" src="ewp.jpg" alt="East West Polytechnic Logo">
+        </div>
+        <h1 id="college-title">EAST-WEST POLYTECHNIC</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#" id="quiz">Quiz</a></li>
+            <li><a href="#" id="teacher">Teacher</a></li>
+            <li><a href="#" id="report">Report</a></li>
+            <li><a href="Student.html">Student</a></li>
+            <li><a href="#" onclick="adminLogout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="login-container">
+            <h2>Administrator - Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                </div>
+                <p id="error-message" class="error" style="display: none; color: red; font-weight: bold;">
+                    Incorrect username or password. Please try again.
+                </p>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 East West Polytechnic. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

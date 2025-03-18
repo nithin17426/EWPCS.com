@@ -1,0 +1,259 @@
+/* General Styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light gray background */
+    color: #333; /* Dark gray text */
+}
+
+/* Header Styles */
+header {
+    background-color: #003366; /* Navy blue header */
+    display: flex;
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Space between left, center, and right */
+    padding: 1rem 2rem; /* Padding for spacing */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000; /* Ensure header stays on top */
+}
+
+/* Logo Container */
+#logo-container {
+    display: flex;
+    align-items: left;
+}
+
+#logo {
+    max-height: 60px; /* Adjust as needed for proper sizing */
+    height: auto;
+    width: auto;
+}
+
+/* Title Container */
+#title-container {
+    flex: 1;
+    text-align: center;
+}
+
+#college-title {
+    font-size: 3.5rem; /* Adjust for emphasis */
+    font-weight: bold;
+    color: #fff; /* White text for visibility */
+    margin: 0;
+}
+
+/* Right Placeholder for Balance */
+#right-placeholder {
+    width: 60px; /* Same width as the logo to balance the layout */
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #003366; /* Navy blue navigation */
+    padding: 1rem 0;
+    margin-top: 80px; /* Space below fixed header */
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 1.5rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+#course-list {
+    width: 25%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+}
+
+#quiz-sheet {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Container for quiz questions */
+.quiz-container {
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Styling for each question */
+.question {
+    background-color: #fafafa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+
+#rules {
+    background-color: rgba(173, 216, 230, 0.3);
+    padding: 15px;
+    border: 1px solid #ADD8E6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.course-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.course-item button {
+    background-color: #1712af;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.course-item button:hover {
+    background-color: #150674;
+}
+/* Delete Button Styling */
+.delete-btn {
+    background-color: #ff4d4d;
+    color: rgb(251, 248, 248);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #e60000;
+}
+
+
+footer {
+    background-color: #950c0c;
+    color: rgb(227, 219, 219);
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+.delete-question-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-question-btn:hover {
+    background-color: #e60000;
+}
+
+.question p {
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+/* Styling for MCQ options */
+.question label {
+    display: block; /* Ensures each label appears on a new line */
+    margin: 7px 0; /* Adds space between each option */
+    cursor: pointer; /* Adds a pointer cursor for better UX */
+    font-size: 1rem; /* Standard font size for options */
+}
+
+.question input[type="radio"] {
+    margin-right: 8px; /* Space between radio button and text */
+    vertical-align: middle; /* Aligns radio buttons with text */
+}
+.question label.correct {
+    background-color: lightgreen;
+}
+
+.question label.wrong {
+    background-color: lightcoral;
+}
+.applyButton {
+    background-color: #007bff; /* Blue for Update */
+    color: white;
+    border: none;
+    padding: 8px ;
+    margin: 45px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.cancel-btn {
+    background-color: #dc3545; /* Red for Cancel */
+    color: white;
+    border: none;
+    padding: 8px ;
+    margin: 45px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.applyButton:hover {
+    background-color: #0056b3;
+}
+
+.cancel-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 0.2rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

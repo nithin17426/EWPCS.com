@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - East West Polytechnic</title>
+    <link rel="stylesheet" href="Teacher.css"> </head>
+</head>
+<body>
+    <header>
+        <div id="logo-container">
+            <img id="logo" src="ewp.jpg" alt="East West Polytechnic Logo">
+        </div>
+        <h1 id="college-title">EAST-WEST POLYTECHNIC</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="Quiz.html">Quiz</a></li>
+            <li><a href="Teacher.html">Teacher</a></li>
+            <li><a href="Report.html">Report</a></li>
+            <li><a href="Student.html">Student</a></li>
+            <li><a href="#" onclick="adminLogout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="course-list">
+            <h2>Courses</h2>
+            <div id="courses">
+                <!-- Dynamic Course List -->
+            </div>
+        </div>
+
+        <div id="quiz-sheet">
+            <div id="rules">
+                <h3>Quiz Rules</h3>
+                <ul>
+                    <li>Each question has only one correct answer.</li>
+                    <li>Select the correct option and proceed to the next question.</li>
+                    <li>Correct answers will be highlighted in green, and incorrect ones in red.</li>
+                </ul>
+            </div>
+            <div id="questions">
+                <p>Select a course to view the quiz.</p>
+            </div>
+            <div>
+                <button class="applyButton">Apply</button>
+                <button class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 East West Polytechnic. All rights reserved.</p>
+    </footer>
+    <script src="Teacher.js"></script>
+</body>
+</html>
