@@ -2,40 +2,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const quizForm = document.getElementById("quiz-form");
     const successMessage = document.getElementById("success-message");
 
-    quizForm.addEventListener("submit", (e) => {
+    quizForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const questionNumber = document.getElementById("question-number").value.trim();
-        const courseName = document.getElementById("course-name").value.trim();
-        const questionText = document.getElementById("question-text").value.trim();
-        const marks = document.getElementById("marks").value.trim();
-
-        const options = {
-            option1: document.querySelector("input[name='option1']").value.trim(),
-            option2: document.querySelector("input[name='option2']").value.trim(),
-            option3: document.querySelector("input[name='option3']").value.trim(),
-            option4: document.querySelector("input[name='option4']").value.trim(),
+        const questionData = {
+            questionNumber: document.getElementById("question-number").value.trim(),
+            courseName: document.getElementById("course-name").value.trim(),
+            questionText: document.getElementById("question-text").value.trim(),
+            options: [
+                document.getElementById("option-a").value.trim(),
+                document.getElementById("option-b").value.trim(),
+                document.getElementById("option-c").value.trim(),
+                document.getElementById("option-d").value.trim()
+            ],
+            correctAnswer: document.getElementById("correct-answer").value.trim()
         };
 
-        const correctOption = document.querySelector("input[name='correct-option']:checked").value;
+        // Save to localStorage (for temporary storage)
+        let quizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+        quizzes.push(questionData);
+        localStorage.setItem("quizzes", JSON.stringify(quizzes));
 
-        // Save the question in localStorage
-        const quizData = JSON.parse(localStorage.getItem("quizData")) || [];
-        quizData.push({ questionNumber, courseName, questionText, marks, options, correctOption });
-        localStorage.setItem("quizData", JSON.stringify(quizData));
+         Alternatively, send to backend API for permanent storage
+        
+        await fetch("http://localhost:5000/save-quiz", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(questionData)
+        });
+        
 
-        // Show success message and reset the form
+        successMessage.textContent = "Quiz question saved successfully!";
         successMessage.style.display = "block";
-        setTimeout(() => {
-            successMessage.style.display = "none";
-        }, 2000);
-
-        quizForm.reset();
     });
 });
-// Logout function
-function adminLogout() {
-    localStorage.removeItem("adminLoggedIn");
-    alert("You have been logged out.");
-    window.location.href = "index.html"; // Redirect to login page
-}
